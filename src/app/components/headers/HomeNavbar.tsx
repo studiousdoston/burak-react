@@ -75,7 +75,7 @@ export function HomeNavbar() {
             )}
           </Stack>
         </Stack>
-        <Stack>Detail</Stack>
+        <Stack></Stack>
       </Container>
     </main>
   );
