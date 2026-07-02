@@ -1,7 +1,8 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import Basket from "./Basket";
 
-export function HomeNavbar() {
+export default function HomeNavbar() {
   const authMember = null;
   return (
     <main className="home-navbar">
@@ -43,6 +44,7 @@ export function HomeNavbar() {
               </NavLink>
             </Box>
             {/* BASKET*/}
+            <Basket />
             {!authMember ? (
               <Box className={"hover-line"}>
                 <Button variant="contained" className="login-button">
@@ -74,7 +76,7 @@ export function HomeNavbar() {
           </Stack>
           <Box className="logo-frame">
             <div className="logo-img">
-              
+
             </div>
           </Box>
         </Stack>
