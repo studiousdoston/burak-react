@@ -1,49 +1,51 @@
-import { Container, Box, Stack, Button } from "@mui/material";
+import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
+
 export default function OtherNavbar() {
   const authMember = null;
+
   return (
-    <main className="other-navbar">
+    <div className="other-navbar">
       <Container className="navbar-container">
         <Stack className="menu">
           <Box>
-            <NavLink to={"/"}>
-              <img className="brand-logo" src="/icons/burak.svg" alt="logo" />
+            <NavLink to="/">
+              <img className="brand-logo" src="/icons/burak.svg" />
             </NavLink>
           </Box>
           <Stack className="links">
             <Box className={"hover-line"}>
-              <NavLink to={"/"}>Home</NavLink>
+              <NavLink to="/">Home</NavLink>
             </Box>
             <Box className={"hover-line"}>
-              <NavLink to={"/products"} activeClassName="underline">
+              <NavLink to="/products" activeClassName={"underline"}>
                 Products
               </NavLink>
             </Box>
             {authMember ? (
               <Box className={"hover-line"}>
-                <NavLink to={"/orders"} activeClassName="underline">
+                <NavLink to="/orders" activeClassName={"underline"}>
                   Orders
                 </NavLink>
               </Box>
             ) : null}
             {authMember ? (
               <Box className={"hover-line"}>
-                <NavLink to={"/member-page"} activeClassName="underline">
+                <NavLink to="/member-page" activeClassName={"underline"}>
                   My Page
                 </NavLink>
               </Box>
             ) : null}
             <Box className={"hover-line"}>
-              <NavLink to={"/help"} activeClassName="underline">
+              <NavLink to="/help" activeClassName={"underline"}>
                 Help
               </NavLink>
             </Box>
-            {/* BASKET*/}
             <Basket />
+
             {!authMember ? (
-              <Box className={"hover-line"}>
+              <Box>
                 <Button variant="contained" className="login-button">
                   Login
                 </Button>
@@ -53,12 +55,11 @@ export default function OtherNavbar() {
                 className="user-avatar"
                 src={"/icons/default-user.svg"}
                 aria-haspopup={"true"}
-                alt="img"
               />
             )}
           </Stack>
         </Stack>
       </Container>
-    </main>
+    </div>
   );
 }

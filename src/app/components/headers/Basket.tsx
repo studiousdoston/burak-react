@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { Box, Button, Stack } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
@@ -16,6 +15,7 @@ export default function Basket() {
   const open = Boolean(anchorEl);
 
   /** HANDLERS **/
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(e.currentTarget);
   };

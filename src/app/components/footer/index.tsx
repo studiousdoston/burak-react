@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from "react";
 import { Box, Container, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -25,8 +24,8 @@ export default function Footer() {
             </Box>
             <Box className={"foot-desc-txt"}>
               Focusing on the gourmet Turkish breakfast as well as the youth
-              society, CZN Burak Gurme aims to bring Turkish cuisine back. CZN
-              Burak Gurme creates an illusion with its cuisine.
+              society, ZEN burak Gurme aims to bring Turkish cuisine back. ZEN
+              burak Gurme creates an illusion with its cuisine.
             </Box>
             <Box className="sns-context">
               <img src={"/icons/facebook.svg"} />

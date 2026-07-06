@@ -20,8 +20,8 @@
 }
 
 .home-navbar .navbar-container .menu .brand-logo {
-  width: 125px;
-  height: 30px;
+  width: 180px;
+  height: 40px;
 }
 
 .home-navbar .navbar-container .menu .links {
@@ -37,7 +37,7 @@
   color: #f8f8ff;
 }
 
-.home-navbar .navbar-container .menu .links .user-avatar {
+.home-navbar .navbar-container .menu .user-avatar {
   width: 50px;
   height: 50px;
   border-radius: 24px;
@@ -46,8 +46,10 @@
 .home-navbar a {
   text-decoration: none;
 }
+
 .home-navbar .hover-line a {
   color: #f8f8ff;
+  z-index: 100;
 }
 
 .home-navbar .underline {
@@ -56,17 +58,19 @@
   border-bottom: solid 2px #d7b686;
 }
 
-.home-navbar .hover-line::after {
+.home-navbar .hover-line:after {
   display: block;
   content: "";
   border-bottom: solid 2px #d7b686;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
-.home-navbar .hover-line:hover::after {
+
+.home-navbar .hover-line:hover:after {
   transform: scaleX(1);
 }
-.home-navbar div.hover-line::after {
+
+.home-navbar div.hover-line:after {
   transform-origin: 0% 50%;
 }
 
@@ -84,10 +88,10 @@
   flex-direction: column;
 }
 
-.home-navbar .navbar-container .header-frame .detail .head-main-text {
+.home-navbar .navbar-container .header-frame .detail .head-main-txt {
   width: 450px;
   height: 150px;
-  font-family: "Roboto serif";
+  font-family: "Roboto Serif";
   font-size: 50px;
   font-style: normal;
   font-weight: 500;
@@ -96,22 +100,23 @@
   color: #f8f8ff;
 }
 
-.home-navbar .navbar-container .header-frame .detail .well-text {
+.home-navbar .navbar-container .header-frame .detail .wel-txt {
   width: 510px;
   height: 42px;
-  font-family: "Roboto serif";
+  font-family: "Roboto Serif";
   font-size: 36px;
+  font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.54px;
   color: #d7b686;
 }
 
-.home-navbar .navbar-container .header-frame .detail .service-hours {
+.home-navbar .navbar-container .header-frame .detail .service-txt {
   margin-top: 23px;
   width: 153px;
   height: 23px;
-  font-family: "Roboto serif";
+  font-family: "Roboto Serif";
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -135,7 +140,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  text-transform: uppercase;
   color: #f8f8ff;
 }
 
@@ -151,10 +155,8 @@
   background: url("/public/img/logo.webp");
   background-size: contain;
   background-repeat: no-repeat;
-  filter: invert(10%);
+  filter: invert(25%);
 }
-
-/***-----------------OTHER NAVBAR-------------------***/
 
 .other-navbar {
   width: 100%;
@@ -177,8 +179,8 @@
 }
 
 .other-navbar .navbar-container .menu .brand-logo {
-  width: 125px;
-  height: 30px;
+  width: 180px;
+  height: 40px;
 }
 
 .other-navbar .navbar-container .menu .links {
@@ -194,7 +196,7 @@
   color: #f8f8ff;
 }
 
-.other-navbar .navbar-container .menu .links .user-avatar {
+.other-navbar .navbar-container .menu .user-avatar {
   width: 50px;
   height: 50px;
   border-radius: 24px;
@@ -203,8 +205,10 @@
 .other-navbar a {
   text-decoration: none;
 }
+
 .other-navbar .hover-line a {
   color: #f8f8ff;
+  z-index: 100;
 }
 
 .other-navbar .underline {
@@ -213,22 +217,21 @@
   border-bottom: solid 2px #d7b686;
 }
 
-.other-navbar .hover-line::after {
+.other-navbar .hover-line:after {
   display: block;
   content: "";
   border-bottom: solid 2px #d7b686;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
 }
-.other-navbar .hover-line:hover::after {
+
+.other-navbar .hover-line:hover:after {
   transform: scaleX(1);
 }
-.other-navbar div.hover-line::after {
+
+.other-navbar div.hover-line:after {
   transform-origin: 0% 50%;
 }
-
-
-/*** ----BASKET----/
 
 /* BASKET */
 
