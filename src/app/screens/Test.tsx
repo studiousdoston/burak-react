@@ -23,7 +23,7 @@ class Test extends Component {
 
   //* Component Lifecycle Methods
   componentDidMount() {
-    console.log("componentDidMount");
+    // console.log("componentDidMount");
     //* Runs after first render(mount) => RETRIEVE DATA FROM BACKEND SERVER
   }
 
@@ -31,7 +31,7 @@ class Test extends Component {
   //* Runs right before the component is removed from screen
 
   componentWillUnmount() {
-    console.log("componentWillUnmount");
+    // console.log("componentWillUnmount");
     //* Runs before component unmount - Removed from the screen
   }
 

@@ -1,19 +1,40 @@
-/* eslint-disable jsx-a11y/role-supports-aria-props */
-/* eslint-disable jsx-a11y/alt-text */
+import { useEffect, useState } from "react";
 import { Box, Button, Container, Stack } from "@mui/material";
+
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 
 export default function HomeNavbar() {
   const authMember = null;
 
+  //* HOOKS *//
+  const [count, setCount] = useState<number>(0);
+  const [value, setValue] = useState<boolean>(true);
+
+  useEffect(() => {
+    console.log("componentDidMount", count); //* DATA FETCHING
+    setCount(count + 1);
+
+    return () => {
+      console.log("componentWillUnmount");
+    }; //! Clean up return function
+  }, [value]);
+
+  //* HANDLERS *//
+  const buttonHandler = () => {
+    setValue(!value);
+  };
   return (
     <div className="home-navbar">
       <Container className="navbar-container">
         <Stack className="menu">
           <Box>
             <NavLink to="/">
-              <img className="brand-logo" src="/icons/burak.svg" />
+              <img
+                className="brand-logo"
+                src="/icons/burak.svg"
+                alt="brand-logo"
+              />
             </NavLink>
           </Box>
           <Stack className="links">
@@ -58,7 +79,7 @@ export default function HomeNavbar() {
               <img
                 className="user-avatar"
                 src={"/icons/default-user.svg"}
-                aria-haspopup={"true"}
+                alt="user-avatar"
               />
             )}
           </Stack>
@@ -69,10 +90,14 @@ export default function HomeNavbar() {
               World's Most Delicious Cousine
             </Box>
             <Box className={"wel-txt"}>The Choice, not just a choice</Box>
-            <Box className={"service-txt"}>24 hours service</Box>
+            <Box className={"service-txt"}>{count} hours service</Box>
             <Box className={"signup"}>
               {!authMember ? (
-                <Button variant={"contained"} className={"signup-button"}>
+                <Button
+                  variant={"contained"}
+                  className={"signup-button"}
+                  onClick={buttonHandler}
+                >
                   SIGN UP
                 </Button>
               ) : null}
