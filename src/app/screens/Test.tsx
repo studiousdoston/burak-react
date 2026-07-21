@@ -21,17 +21,19 @@ class Test extends Component {
     });
   };
 
+  //* Component Lifecycle Methods
   componentDidMount() {
     console.log("componentDidMount");
-    // runs after first render => RETRIEVE DATA FROM BACKEND SERVER
-  }
-
-  componentWillUnmount() {
-    console.log("componentWillUnmount");
-    // runs before component unmount
+    //* Runs after first render(mount) => RETRIEVE DATA FROM BACKEND SERVER
   }
 
   componentDidUpdate() {}
+  //* Runs right before the component is removed from screen
+
+  componentWillUnmount() {
+    console.log("componentWillUnmount");
+    //* Runs before component unmount - Removed from the screen
+  }
 
   render() {
     return (

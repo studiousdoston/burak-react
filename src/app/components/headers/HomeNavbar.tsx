@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/role-supports-aria-props */
 /* eslint-disable jsx-a11y/alt-text */
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
