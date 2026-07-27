@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import { Product } from "../../../lib/types/product";
 
-/* REDUX SproductCTOR */
+/* REDUX SELECTOR */
 const popularDishesRetriever = createSelector(
   retrievePopularDishes,
   (popularDishes) => {
