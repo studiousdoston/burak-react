@@ -3,19 +3,17 @@ import { Product } from "./product";
 
 //* REACT APP STATE *//
 export interface AppRootState {
-  homePage: HomepPageState;
+  homePage: HomePageState;
   //productsPage: ProductsPageState
 }
 
 //* HOMEPAGE *//
-export interface HomepPageState {
+export interface HomePageState {
   popularDishes: Product[];
   newDishes: Product[];
   topUsers: Member[];
 }
 
-
 //* PRODUCTS PAGE *//
-
 
 //* ORDERS PAGE
