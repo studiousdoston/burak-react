@@ -1,8 +1,15 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
+import { CartItem } from "../../../lib/types/search";
 
-export default function OtherNavbar() {
+interface OtherNavBarProps {
+  cartItems: CartItem[];
+}
+
+export default function OtherNavbar(props: OtherNavBarProps) {
+  const { cartItems } = props;
   const authMember = null;
 
   return (
@@ -42,7 +49,7 @@ export default function OtherNavbar() {
                 Help
               </NavLink>
             </Box>
-            <Basket />
+            <Basket cartItems={cartItems} />
 
             {!authMember ? (
               <Box>
@@ -51,10 +58,12 @@ export default function OtherNavbar() {
                 </Button>
               </Box>
             ) : (
+              // eslint-disable-next-line jsx-a11y/role-supports-aria-props
               <img
                 className="user-avatar"
                 src={"/icons/default-user.svg"}
                 aria-haspopup={"true"}
+                alt="Img"
               />
             )}
           </Stack>
