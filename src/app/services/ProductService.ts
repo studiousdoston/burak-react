@@ -8,7 +8,7 @@ class ProductService {
   constructor() {
     this.path = serverApi;
   }
-  //! ----- getProducts ----- 
+  //! ----- getProducts -----
   public async getProducts(input: ProductInquiry): Promise<Product[]> {
     try {
       let url = `
@@ -25,6 +25,20 @@ class ProductService {
       return result.data;
     } catch (err) {
       console.log("ERROR, getProducts: ", err);
+      throw err;
+    }
+  }
+
+  //! ----- getProduct -----
+  public async getProduct(productId: string): Promise<Product> {
+    try {
+      const url = `${this.path}/product/${productId}`;
+      const result = await axios.get(url, { withCredentials: true });
+      console.log("getProduct:", result);
+
+      return result.data;
+    } catch (err) {
+      console.log("ERROR, getProduct: ", err);
       throw err;
     }
   }
