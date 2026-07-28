@@ -8,7 +8,7 @@ class ProductService {
   constructor() {
     this.path = serverApi;
   }
-
+  //! ----- getProducts ----- 
   public async getProducts(input: ProductInquiry): Promise<Product[]> {
     try {
       let url = `
