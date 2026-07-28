@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "@reduxjs/toolkit";
 
 import { setNewDishes, setPopularDishes, setTopUsers } from "./slice";
-import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
+import MemberService from "../../services/MemberService";
 
 import Statistics from "./Statistics";
 import PopularDishes from "./PopularDishes";
@@ -14,10 +13,8 @@ import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
 import "../../../css/home.css";
-import MemberService from "../../services/MemberService";
-import { Member } from "../../../lib/types/member";
 
-/* REDUX SLICE & SELECTOR */
+/* REDUX SLICE & SELECTOR 
 //*-------- ACTION CREATOR FUNCTIONS from slice.ts --------*\\
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
@@ -25,11 +22,16 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
   setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
+*/
 
 //***********************************************
 export default function HomePage() {
-  const { setPopularDishes, setNewDishes, setTopUsers } =
-    actionDispatch(useDispatch());
+  const dispatch = useDispatch();
+
+  /*const { setPopularDishes, setNewDishes, setTopUsers } =
+     actionDispatch(useDispatch());
+  */
+
   //* Backend server data fetching =>
   useEffect(() => {
     const product = new ProductService();
@@ -41,9 +43,9 @@ export default function HomePage() {
         productCollection: ProductCollection.DISH,
       })
       .then((data) => {
-        setPopularDishes(data);
+        dispatch(setPopularDishes(data));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("ERROR fetching popular dishes", err));
 
     product
       .getProducts({
@@ -52,19 +54,19 @@ export default function HomePage() {
         order: "createdAt",
       })
       .then((data) => {
-        setNewDishes(data);
+        dispatch(setNewDishes(data));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("ERROR fetching new dishes", err));
 
     const member = new MemberService();
 
     member
       .getTopUsers()
       .then((data) => {
-        setTopUsers(data);
+        dispatch(setTopUsers(data));
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch((err) => console.log("ERROR fetching top users ", err));
+  }, [dispatch]);
 
   return (
     <div className={"homepage"}>
