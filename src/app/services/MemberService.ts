@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { serverApi } from "../../lib/config";
-import { Member, MemberInput } from "../../lib/types/member";
+import { LoginInput, Member, MemberInput } from "../../lib/types/member";
 
 class MemberService {
   private readonly path: string;
@@ -44,14 +44,30 @@ class MemberService {
     try {
       const url = `${serverApi}/member/signup`;
       const result = await axios.post(url, input, { withCredentials: true });
-      console.log("signup:", result);
+      //console.log("signup:", result);
       const member = result.data.member;
-      console.log("member_info:", member);
+      // console.log("member_info:", member);
       localStorage.setItem("memberData", JSON.stringify(member));
 
       return member;
     } catch (err) {
       console.log("ERROR, signup:", err);
+      throw err;
+    }
+  }
+
+  //! ------- login -------
+  public async login(input: LoginInput): Promise<Member> {
+    try {
+      const url = `${serverApi}/member/login`;
+      const result = await axios.post(url, input, { withCredentials: true });
+      const member = result.data.member;
+      console.log("LOGGEED IN USER:", member);
+      localStorage.setItem("memberData", JSON.stringify(member));
+
+      return member;
+    } catch (err) {
+      console.log("ERROR, login:", err);
       throw err;
     }
   }
