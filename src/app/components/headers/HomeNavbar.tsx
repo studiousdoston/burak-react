@@ -11,12 +11,23 @@ interface HomeNavBarProps {
   onRemove: (item: CartItem) => void;
   onDelete: (item: CartItem) => void;
   onDeleteAll: () => void;
+  setSignupOpen: (isOpen: boolean) => void;
+  setLoginOpen: (isOpen: boolean) => void;
 }
 
 export default function HomeNavbar(props: HomeNavBarProps) {
-  const { cartItems, onAdd, onDelete, onDeleteAll, onRemove } = props;
-
+  const {
+    cartItems,
+    onAdd,
+    onDelete,
+    onDeleteAll,
+    onRemove,
+    setSignupOpen,
+    setLoginOpen,
+  } = props;
   const authMember = null;
+
+  //* HANDLERS
 
   return (
     <div className="home-navbar">
@@ -71,7 +82,11 @@ export default function HomeNavbar(props: HomeNavBarProps) {
 
             {!authMember ? (
               <Box>
-                <Button variant="contained" className="login-button">
+                <Button
+                  variant="contained"
+                  className="login-button"
+                  onClick={() => setLoginOpen(true)}
+                >
                   Login
                 </Button>
               </Box>
@@ -96,7 +111,7 @@ export default function HomeNavbar(props: HomeNavBarProps) {
                 <Button
                   variant={"contained"}
                   className={"signup-button"}
-                  /*onClick={buttonHandler}*/
+                  onClick={() => setSignupOpen(true)}
                 >
                   SIGN UP
                 </Button>
