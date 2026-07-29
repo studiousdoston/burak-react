@@ -41,9 +41,10 @@ export default function Products(props: ProductsProps) {
   const { onAdd } = props;
   const dispatch = useDispatch();
 
-  //* Directly select products array from store
+  //* Directly select products array using selectors
   const products = useSelector(retrieveProducts);
 
+  //---------------------------------------------------------------------
   //* UseState HOOKS
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
@@ -60,10 +61,12 @@ export default function Products(props: ProductsProps) {
     if (searchProduct === "") {
       setProductSearch((prev) => ({ ...prev, search: "" }));
     }
-  }, [searchProduct]);
+  }, [searchProduct]); // search field clean up logic✅
 
   const history = useHistory();
 
+
+  //-------------------------------------------------------------------✅
   //* Data fetching
   useEffect(() => {
     const product = new ProductService();
@@ -82,6 +85,7 @@ export default function Products(props: ProductsProps) {
     }));
   };
 
+  //-------------------------------------------------------------------✅
   const searchOrderHandler = (order: string) => {
     setProductSearch((prev) => ({
       ...prev,
@@ -90,6 +94,7 @@ export default function Products(props: ProductsProps) {
     }));
   };
 
+  //-------------------------------------------------------------------✅
   const searchProductHandler = () => {
     setProductSearch((prev) => ({ ...prev, page: 1, search: searchProduct }));
   };
@@ -100,11 +105,14 @@ export default function Products(props: ProductsProps) {
     }
   };
 
+
+  //------------------------------------------------------------------✅
   const paginationHandler = (e: ChangeEvent<any>, value: number) => {
     productSearch.page = value;
     setProductSearch((prev) => ({ ...prev, page: value }));
   };
-
+  
+  //-------------------------------------------------------------------✅
   const chooseDishHandler = (id: string) => {
     history.push(`/products/${id}`);
   };
@@ -255,7 +263,7 @@ export default function Products(props: ProductsProps) {
                   const imagePath = `${serverApi}/${product.productImages[0]}`;
                   const sizeVolume =
                     product.productCollection === ProductCollection.DRINK
-                      ? product.productVolume + "l"
+                      ? product.productVolume + "L"
                       : product.productSize + " size";
                   return (
                     <Stack
@@ -273,7 +281,6 @@ export default function Products(props: ProductsProps) {
                         <Button
                           className={"shop-btn"}
                           onClick={(e) => {
-                            console.log("BUTTON CLICKED!");
                             onAdd({
                               _id: product._id,
                               quantity: 1,
@@ -328,7 +335,7 @@ export default function Products(props: ProductsProps) {
                   ? productSearch.page + 1
                   : productSearch.page
               }
-              page={1}
+              page={productSearch.page}
               renderItem={(item) => (
                 <PaginationItem
                   components={{
@@ -336,7 +343,7 @@ export default function Products(props: ProductsProps) {
                     next: ArrowForwardIcon,
                   }}
                   {...item}
-                  color={"secondary"}
+                  color={'secondary'}
                 />
               )}
               onChange={paginationHandler}

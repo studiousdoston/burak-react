@@ -367,3 +367,34 @@
   display: flex;
   flex-direction: column;
 }
+
+.col-2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.col-2 button {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease-in-out;
+}
+
+.col-2 button:hover {
+  background-color: #e2e8f0;
+  border-color: #b0b0b0;
+}
+
+.col-2 button:active {
+  background-color: #cbd5e1;
+}
