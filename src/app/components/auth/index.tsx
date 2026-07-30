@@ -6,11 +6,16 @@ import Fade from "@material-ui/core/Fade";
 import { Fab, Stack, TextField } from "@mui/material";
 import styled from "styled-components";
 import LoginIcon from "@mui/icons-material/Login";
+import { InputAdornment, IconButton } from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 import { T } from "../../../lib/types/common";
 import { Messages } from "../../../lib/config";
 import { LoginInput, MemberInput } from "../../../lib/types/member";
 import MemberService from "../../services/MemberService";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
+import { useGlobals } from "../../hooks/useGlobals";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -49,6 +54,8 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   const [memberNick, setMemberNick] = useState<string>("");
   const [memberPhone, setMemberPhone] = useState<string>("");
   const [memberPassword, setMemberPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const { setAuthMember } = useGlobals();
 
   //* HANDLERS
   const handleUserName = (e: T) => {
@@ -79,6 +86,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       const result = await member.signup(signupInput);
 
       //* Saving Authenticated user
+      setAuthMember(result);
 
       handleSignupClose();
     } catch (err) {
@@ -103,6 +111,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       const member = new MemberService();
       const result = await member.login(loginInput);
       //* Saving Authenticated user
+      setAuthMember(result);
 
       handleLoginClose();
     } catch (err) {
@@ -111,6 +120,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       sweetErrorHandling(err);
     }
   };
+  //!------------------------------------------
 
   const handlePasswordKeyDown = (e: T) => {
     if (e.key === "Enter" && signupOpen) {
@@ -120,6 +130,10 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
     }
   };
 
+  //!------------------------------------------
+  const handleClickShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
   return (
     <div>
       {/* SIGN UP Modal */}
@@ -162,8 +176,22 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 id="outlined-basic"
                 label="password"
                 variant="outlined"
+                type={showPassword ? "text" : "password"}
                 onChange={handlePassword}
                 onKeyDown={handlePasswordKeyDown}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               <Fab
                 sx={{ marginTop: "30px", width: "120px" }}
@@ -218,9 +246,22 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 id={"outlined-basic"}
                 label={"password"}
                 variant={"outlined"}
-                type={"password"}
+                type={showPassword ? "text" : "password"}
                 onChange={handlePassword}
                 onKeyDown={handlePasswordKeyDown}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
               <Fab
                 sx={{ marginTop: "27px", width: "120px" }}
