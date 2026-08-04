@@ -13,10 +13,14 @@ export default function ContextProvider({ children }: { children: ReactNode }) {
       : null,
   );
 
-  console.log(" ==== verify ====");
+  const [orderBuilder, setOrderBuilder] = useState<Date>(new Date());
 
+  console.log(" ==== verify ====");
+ 
   return (
-    <GlobalContext.Provider value={{ authMember, setAuthMember }}>
+    <GlobalContext.Provider
+      value={{ authMember, setAuthMember, orderBuilder, setOrderBuilder }}
+    >
       {children}
     </GlobalContext.Provider>
   );
