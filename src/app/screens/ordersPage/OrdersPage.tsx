@@ -1,12 +1,7 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import { Container, Stack, Box } from "@mui/material";
-
-import {
-  setPausedOrders,
-  setProcessOrders,
-  setFinishedOrders,
-} from "./ordersSlice";
-
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -14,15 +9,50 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
+
+import {
+  setPausedOrders,
+  setProcessOrders,
+  setFinishedOrders,
+} from "./ordersSlice";
 import "../../../css/order.css";
-import { useDispatch } from "react-redux";
+import { OrderInquiry } from "../../../lib/types/order";
+import { OrderStatus } from "../../../lib/enums/order.enum";
+import OrderService from "../../services/OrderService";
 
 export default function OrdersPage() {
   const [value, setValue] = useState("1");
-
+  const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
+    page: 1,
+    limit: 5,
+    orderStatus: OrderStatus.PAUSE,
+  });
   const dispatch = useDispatch();
 
-  //
+  //* BACKEND DATA FETCHING
+  useEffect(() => {
+    const order = new OrderService();
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
+      .then((data) => {
+        dispatch(setPausedOrders(data));
+      })
+      .catch((err) => console.log(err));
+
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
+      .then((data) => {
+        dispatch(setProcessOrders(data));
+      })
+      .catch((err) => console.log(err));
+
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
+      .then((data) => {
+        dispatch(setFinishedOrders(data));
+      })
+      .catch((err) => console.log(err));
+  }, [orderInquiry, dispatch]);
 
   //* HANDLERS
   const handleChange = (e: SyntheticEvent, newValue: string) => {

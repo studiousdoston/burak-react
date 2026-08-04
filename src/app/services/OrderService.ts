@@ -1,6 +1,8 @@
 import axios from "axios";
 import { serverApi } from "../../lib/config";
-import { Order, OrderItemInput } from "../../lib/types/order";
+import { Order, OrderInquiry, OrderItemInput } from "../../lib/types/order";
+import { CartItem } from "../../lib/types/search";
+import { OrderStatus } from "../../lib/enums/order.enum";
 
 class OrderService {
   private readonly path: string;
@@ -8,16 +10,41 @@ class OrderService {
     this.path = serverApi;
   }
 
-  //! ----- getMyOrders -----
-  public async getMyOrders(): Promise<Order[]> {
-    return [];
+  //! ----- createOrder -----
+  public async createOrder(input: CartItem[]): Promise<Order> {
+    try {
+      const orderItems: OrderItemInput[] = input.map((cartItem: CartItem) => {
+        return {
+          itemQuantity: cartItem.quantity,
+          itemPrice: cartItem.price,
+          productId: cartItem._id,
+        };
+      });
+      console.log("orderItem =+", orderItems);
+      const url = `${this.path}/order/create`;
+
+      const result = await axios.post(url, orderItems, {
+        withCredentials: true,
+      });
+      console.log("createOrder:", result);
+
+      return result.data;
+    } catch (err) {
+      console.log("ERROR, createOrder: ", err);
+      throw err;
+    }
   }
 
-  //! ----- createOrder -----
-  public async createOrder(input: OrderItemInput): Promise<Order> {
+  //! ----- getMyOrders -----
+  public async getMyOrders(input: OrderInquiry): Promise<Order[]> {
     try {
-      const url = `${serverApi}/order/create`;
-      const result = await axios.post(url, input, { withCredentials: true });
+      //axios.defaults.withCredentials = true;
+      const url = `${this.path}/order/all`;
+      const query = `?page=${input.page}&limit=${input.limit}&orderStatus=${input.orderStatus}`;
+
+      const result = await axios.get(url + query, { withCredentials: true });
+      console.log("getMyOrders =+", result);
+      return result.data;
     } catch (err) {
       console.log("ERROR, createOrder: ", err);
       throw err;
