@@ -4,7 +4,7 @@ import { CssVarsProvider, Typography } from "@mui/joy";
 import CardOverflow from "@mui/joy/CardOverflow";
 import AspectRatio from "@mui/joy/AspectRatio";
 import { createSelector } from "@reduxjs/toolkit";
-import { retrieveTopUsers } from "./selector";
+import { retrieveTopUsers } from "./homePageSelector";
 import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 

@@ -9,7 +9,7 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { createSelector } from "reselect";
-import { retrievePopularDishes } from "./selector";
+import { retrievePopularDishes } from "./homePageSelector";
 import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import { Product } from "../../../lib/types/product";

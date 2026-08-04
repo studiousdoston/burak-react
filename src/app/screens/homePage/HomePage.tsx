@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { setNewDishes, setPopularDishes, setTopUsers } from "./slice";
+import { setNewDishes, setPopularDishes, setTopUsers } from "./homePageSlice";
 import ProductService from "../../services/ProductService";
-import { ProductCollection } from "../../../lib/enums/product.enum";
 import MemberService from "../../services/MemberService";
+import { ProductCollection } from "../../../lib/enums/product.enum";
 
 import Statistics from "./Statistics";
 import PopularDishes from "./PopularDishes";

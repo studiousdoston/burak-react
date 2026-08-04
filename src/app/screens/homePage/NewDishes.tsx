@@ -9,7 +9,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import Divider from "../../components/divider";
 
 import { createSelector } from "@reduxjs/toolkit";
-import { retrieveNewDishes } from "./selector";
+import { retrieveNewDishes } from "./homePageSelector";
 import { useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import { Product } from "../../../lib/types/product";

@@ -1,5 +1,12 @@
 import { useState, SyntheticEvent } from "react";
 import { Container, Stack, Box } from "@mui/material";
+
+import {
+  setPausedOrders,
+  setProcessOrders,
+  setFinishedOrders,
+} from "./ordersSlice";
+
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -8,10 +15,16 @@ import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
 import "../../../css/order.css";
+import { useDispatch } from "react-redux";
 
 export default function OrdersPage() {
   const [value, setValue] = useState("1");
 
+  const dispatch = useDispatch();
+
+  //
+
+  //* HANDLERS
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
@@ -50,11 +63,13 @@ export default function OrdersPage() {
                 <img
                   src={"/icons/default-user.svg"}
                   className={"order-user-avatar"}
+                  alt="img"
                 />
                 <div className={"order-user-icon-box"}>
                   <img
                     src={"/icons/user-badge.svg"}
                     className={"order-user-prof-img"}
+                    alt="img"
                   />
                 </div>
               </div>
@@ -103,10 +118,10 @@ export default function OrdersPage() {
               className={"card-input"}
             />
             <div className={"cards-box"}>
-              <img src={"/icons/western-card.svg"} />
-              <img src={"/icons/master-card.svg"} />
-              <img src={"/icons/paypal-card.svg"} />
-              <img src={"/icons/visa-card.svg"} />
+              <img src={"/icons/western-card.svg"} alt="img" />
+              <img src={"/icons/master-card.svg"} alt="img" />
+              <img src={"/icons/paypal-card.svg"} alt="img" />
+              <img src={"/icons/visa-card.svg"} alt="img" />
             </div>
           </Box>
         </Stack>

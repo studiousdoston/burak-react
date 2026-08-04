@@ -26,6 +26,7 @@ export default function Basket(props: BasketProps) {
     (a: number, c: CartItem) => a + c.quantity * c.price,
     0,
   );
+
   const shippingCost: number = itemsPrice < 100 ? 5 : 0;
   const totalPrice = (itemsPrice + shippingCost).toFixed(1);
 
@@ -40,7 +41,10 @@ export default function Basket(props: BasketProps) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const handleOrder = () => {
+    history.push(`/orders`);
+    handleClose();
+  };
   return (
     <Box className={"hover-line"}>
       <IconButton
@@ -158,7 +162,11 @@ export default function Basket(props: BasketProps) {
               <span className={"price"}>
                 Total: ${totalPrice} ({itemsPrice}+{shippingCost})
               </span>
-              <Button startIcon={<ShoppingCartIcon />} variant={"contained"}>
+              <Button
+                startIcon={<ShoppingCartIcon />}
+                variant={"contained"}
+                onClick={handleOrder}
+              >
                 Order
               </Button>
             </Box>
