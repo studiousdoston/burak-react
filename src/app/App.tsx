@@ -3,7 +3,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import HomePage from "./screens/homePage/HomePage";
 import ProductsPage from "./screens/productsPage/ProductsPage";
 import OrdersPage from "./screens/ordersPage/OrdersPage";
-import UserPage from "./screens/userPage";
+import UserPage from "./screens/userPage/usersPage";
 import HomeNavbar from "./components/headers/HomeNavbar";
 import OtherNavbar from "./components/headers/OtherNavbar";
 import Footer from "./components/footer";
